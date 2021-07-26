@@ -4,8 +4,6 @@ use sfml::{
 };
 
 fn main() {
-    println!("Hello, world!");
-
     let mut window = RenderWindow::new(
         (675, 675),
         "Tetris",
