@@ -3,6 +3,10 @@ use sfml::{
     window::{Event, Key},
 };
 
+struct TetrisShape<'a> {
+    rect: RectangleShape<'a>,
+}
+
 fn main() {
     let mut window = RenderWindow::new(
         (675, 675),
