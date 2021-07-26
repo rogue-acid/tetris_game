@@ -8,7 +8,7 @@ fn main() {
 
     let mut window = RenderWindow::new(
         (675, 675),
-        "tik_tak_toe",
+        "Tetris",
         sfml::window::Style::TITLEBAR,
         &Default::default(),
     );
