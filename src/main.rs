@@ -5,7 +5,6 @@ use sfml::{
     system::Vector2,
     window::{Event, Key},
 };
-
 struct TetrisShape<'a> {
     rect: RectangleShape<'a>,
 }
@@ -41,7 +40,13 @@ fn main() {
         &Default::default(),
     );
 
-    let mut vector_of_rows: Vec<Vec<TetrisBlock>> = Vec::new();
+    let mut list_of_rows = LinkedList::<Vec<Option<TetrisBlock>>>::new();
+
+    for _ in 0..22 {
+        let mut row = Vec::new();
+        row.resize_with(10, || None);
+        list_of_rows.push_back(row);
+    }
 
     while window.is_open() {
         while let Some(event) = window.poll_event() {
