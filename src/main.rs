@@ -5,7 +5,6 @@ use sfml::{
     system::Vector2,
     window::{Event, Key},
 };
-
 struct TetrisShape<'a> {
     rect: RectangleShape<'a>,
 }
@@ -41,7 +40,13 @@ fn main() {
         &Default::default(),
     );
 
-    let mut vector_of_rows: Vec<Vec<TetrisBlock>> = Vec::new();
+    let mut list_of_rows = LinkedList::<Vec<Option<TetrisBlock>>>::new();
+
+    for _ in 0..22 {
+        let mut row = Vec::new();
+        row.resize_with(10, || None);
+        list_of_rows.push_back(row);
+    }
 
     while window.is_open() {
         while let Some(event) = window.poll_event() {
@@ -51,30 +56,27 @@ fn main() {
             }
         }
 
-        let y = for (pos, value) in vector_of_rows.iter().enumerate() {
-            let y = pos as i32;
-        };
-
-        let x = for row in vector_of_rows.iter() {
-            for (pos, value) in row.iter().enumerate() {
-                let x = pos;
-            }
-        };
-
-        let color = Color::rgb(220, 120, 125);
-
-        let mut rect = RectangleShape::new();
-        rect.set_outline_color(Color::BLACK);
-        rect.set_outline_thickness(1.0);
-        rect.set_size((block_size.x as f32, block_size.y as f32));
-        rect.set_fill_color(color);
-        // rect.set_position((
-        //     (x as u32 * block_size.x) as f32,
-        //     (y as u32 * block_size.y) as f32,
-        // ));
-
         window.clear(Color::rgb(220, 220, 220));
-        window.draw(&rect);
+        for (y, row) in list_of_rows.iter().enumerate() {
+            for (x, block) in row.iter().enumerate() {
+                let color = match block {
+                    Some(block) => block.color,
+                    None => Color::WHITE,
+                };
+
+                let mut rect = RectangleShape::new();
+                rect.set_outline_color(Color::BLACK);
+                rect.set_outline_thickness(1.0);
+                rect.set_size((block_size.x as f32, block_size.y as f32));
+                rect.set_fill_color(color);
+                rect.set_position((
+                    (x as u32 * block_size.x) as f32,
+                    (y as u32 * block_size.y) as f32,
+                ));
+
+                window.draw(&rect);
+            }
+        }
         window.display();
     }
 }
