@@ -83,9 +83,6 @@ fn main() {
         while let Some(event) = window.poll_event() {
             match event {
                 Event::Closed | Event::KeyPressed { code: Key::Q, .. } => window.close(),
-                Event::KeyPressed {
-                    code: Key::SPACE, ..
-                } => vector_of_rows.move_line_down(20),
                 _ => (),
             }
         }
