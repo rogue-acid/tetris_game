@@ -77,17 +77,6 @@ fn main() {
     vector_of_rows[3][0].color = Some(Color::BLUE);
     vector_of_rows[4][0].color = Some(Color::BLACK);
     vector_of_rows[5][0].color = Some(Color::RED);
-
-    for block in vector_of_rows[14].iter_mut() {
-        block.color = Some(Color::BLUE);
-    }
-    for block in vector_of_rows[2].iter_mut() {
-        block.color = Some(Color::BLUE);
-    }
-    for block in vector_of_rows[20].iter_mut() {
-        block.color = Some(Color::BLUE);
-    }
-
     while window.is_open() {
         while let Some(event) = window.poll_event() {
             match event {
