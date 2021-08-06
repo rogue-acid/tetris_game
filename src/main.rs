@@ -62,6 +62,8 @@ fn main() {
         &Default::default(),
     );
 
+    window.set_framerate_limit(60);
+
     let mut vector_of_rows: Vec<Vec<TetrisBlock>> = Vec::new();
 
     vector_of_rows.resize_with(22, || {
