@@ -66,6 +66,8 @@ fn main() {
 
     let mut vector_of_rows: Vec<Vec<TetrisBlock>> = Vec::new();
 
+    let mut falling_shape_vector: Vec<Vec<TetrisShape>> = Vec::new();
+
     vector_of_rows.resize_with(22, || {
         let mut row = Vec::new();
         row.resize_with(10, || TetrisBlock { color: None });
